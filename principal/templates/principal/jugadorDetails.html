@@ -1,0 +1,195 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<script>
+		function mostrarTest() {
+		    document.getElementById("abrirEntrenamientos").style.display = "inline";
+		    document.getElementById("cerrarEntrenamientos").style.display = "none";
+			document.getElementById("sidebarEntrenamientos").style.display = "none";
+			
+		    document.getElementById("abrirPartidos").style.display = "inline";
+		    document.getElementById("cerrarPartidos").style.display = "none";
+			document.getElementById("sidebarPartidos").style.display = "none";
+		    
+		    document.getElementById("sidebarTest").style.display = "inline";
+		    document.getElementById("abrirTest").style.display = "none";
+		    document.getElementById("cerrarTest").style.display = "inline";
+		}
+		
+		function ocultarTest() {
+		    document.getElementById("sidebarTest").style.display = "none";
+		    document.getElementById("abrirTest").style.display = "inline";
+		    document.getElementById("cerrarTest").style.display = "none";
+		}
+		
+		function mostrarPartidos() {
+		    document.getElementById("sidebarTest").style.display = "none";
+		    document.getElementById("abrirTest").style.display = "inline";
+		    document.getElementById("cerrarTest").style.display = "none";
+		    
+		    document.getElementById("sidebarEntrenamientos").style.display = "none";
+		    document.getElementById("abrirEntrenamientos").style.display = "inline";
+		    document.getElementById("cerrarEntrenamientos").style.display = "none";
+		    
+		    document.getElementById("sidebarPartidos").style.display = "inline";
+		    document.getElementById("abrirPartidos").style.display = "none";
+		    document.getElementById("cerrarPartidos").style.display = "inline";
+		}
+		
+		function ocultarPartidos() {
+		    document.getElementById("sidebarPartidos").style.display = "none";
+		    document.getElementById("abrirPartidos").style.display = "inline";
+		    document.getElementById("cerrarPartidos").style.display = "none";
+		}
+		
+		function mostrarEntrenamientos() {
+		    document.getElementById("sidebarTest").style.display = "none";
+		    document.getElementById("abrirTest").style.display = "inline";
+		    document.getElementById("cerrarTest").style.display = "none";
+		    
+		    document.getElementById("sidebarPartidos").style.display = "none";
+		    document.getElementById("abrirPartidos").style.display = "inline";
+		    document.getElementById("cerrarPartidos").style.display = "none";
+		    document.getElementById("sidebarEntrenamientos").style.display = "inline";
+		    document.getElementById("abrirEntrenamientos").style.display = "none";
+		    document.getElementById("cerrarEntrenamientos").style.display = "inline";
+		}
+		
+		function ocultarEntrenamientos() {
+		    document.getElementById("sidebarEntrenamientos").style.display = "none";
+		    document.getElementById("abrirEntrenamientos").style.display = "inline";
+		    document.getElementById("cerrarEntrenamientos").style.display = "none";
+		}
+	</script>
+
+	<br/>
+	<h3>Información del jugador</h3>
+		<br/>
+		<table class="table table-striped">
+	        <tr>
+	            <th>Nombre</th>
+	            <td>{{ jugador.nombre }}</td>
+	        </tr>
+	        <tr>
+	            <th>Apellidos</th>
+	            <td>{{ jugador.apellidos }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Fecha de nacimiento</th>
+	        	<td>{{ jugador.fechaNacimiento }}</td>
+	        </tr>
+	        <tr>
+	            <th>Posición principal</th>
+	            <td>{{ jugador.posicionPrincipal }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Posiciones secundarias</th>
+	        	<td valign="top">
+	        		{% for posicion in jugador.posicionesSecundarias.all %}
+		            	{{ posicion.nombre }}
+	                {% endfor %}
+	            </td>
+	        </tr>
+	        <tr>
+	            <th>Altura</th>
+	            <td>{{ jugador.altura }}</td>
+	        </tr>
+	        <tr>
+	            <th>Pie dominante</th>
+	            <td>{{ jugador.pieDominante }}</td>
+	        </tr>
+	    </table>
+	    
+	    <a href='/jugadores/jugador/{{ jugador.id }}/editar' class="btn btn-primary">Editar jugador</a>
+	    
+	    <a href='/jugadores/jugador/{{ jugador.id }}/eliminar' class="btn btn-danger">Eliminar jugador</a>
+	    
+	    <br/>
+	    <br/>
+	    <br/>
+	    <table class="table">
+	    	<tr align="center">
+	    		<th></th>
+	    		<th>
+					<a id="abrirTest" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarTest()">
+				        Test de Cooper
+				    </a>
+				    <a id="cerrarTest" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarTest()" style="display:none;">
+				        Test de Cooper
+				    </a>
+				</th>
+	    		<th>
+	    			<a id="abrirPartidos" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarPartidos()">
+				        Partidos convocado
+				    </a>
+				    <a id="cerrarPartidos" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarPartidos()" style="display:none;">
+				        Partidos convocado
+				    </a>
+	    		</th>
+	    		<th>
+					<a id="abrirEntrenamientos" class="abrir-cerrar" href="javascript:void(0)" onclick="mostrarEntrenamientos()">
+				        Entrenamientos asistidos
+				    </a>
+				    <a id="cerrarEntrenamientos" class="abrir-cerrar" href="javascript:void(0)" onclick="ocultarEntrenamientos()" style="display:none;">
+				        Entrenamientos asistidos
+				    </a>
+				</th>
+	    	</tr>
+	    </table>
+	    
+	    <div id="sidebarTest" style="display:none;">
+		    <table class="table table-striped">
+		    	{% for testCooper in testCoopers %}
+	                <tr>
+	                	<th>Fecha</th>
+	                    <td>{{ testCooper.fecha }}</td>
+	                </tr>
+	                <tr>
+	                	<th>Distancia</th>
+	                    <td>{{ testCooper.distancia }}</td>
+	                </tr>
+	                <tr>
+	                	<th>VO-Máximo</th>
+	                    <td>{{ testCooper.vo2max }}</td>
+	                </tr>
+		    	{% endfor %}
+		    </table>
+		</div> 
+
+		<div id="sidebarPartidos" style="display:none;">
+			{% for partido in partidos %}	    
+		    	<table class="table table-striped">
+	                <tr>
+	                	<th>Partido</th>
+	                    <td><a href='/partidos/partido/{{ partido.id }}/{{ jugador.id }}'>{{ partido.local }} - {{ partido.visitante }}</a></td>
+	                </tr>
+	                <tr>
+	                	<th>Fecha</th>
+	                    <td>{{ partido.fecha }}</td>
+	                </tr>
+	                <tr>
+	                	<th>Titular</th>
+	                    <td>{{ partido.titular }}</td>
+	                </tr>
+	                <tr>
+	                	<th>Minutos jugados</th>
+	                    <td>{{ partido.minutosJugados }}</td>
+	                </tr>
+			    </table>
+			{% endfor %}    
+	    </div>
+	    
+	    <div id="sidebarEntrenamientos" style="display:none;">
+		    <table class="table table-striped">
+		    	{% for entrenamiento in entrenamientos %}
+	                <tr>
+	                	<th>Fecha</th>
+	                    <td>{{ entrenamiento.fecha }}</td>
+	                    <td><a href='/entrenamientos/entrenamiento/{{ entrenamiento.id }}'>Detalles</a></td>
+	                </tr>
+		    	{% endfor %}
+		    </table>
+	    </div>
+	    
+{% endblock %}

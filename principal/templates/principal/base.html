@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="https://www.evidentia.cloud/plugins/fontawesome-free/css/all.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/media/kraken.png">
+	<script src="../mootools-1.2.3-core-yc.js" type="text/javascript"></script>
+	<title>TeamKraken</title>
+	<style>
+		.site-footer
+		{
+		  background-color:#26272b;
+		  padding:45px 0 20px;
+		  font-size:15px;
+		  line-height:24px;
+		  color:#737373;
+		}
+		.site-footer hr
+		{
+		  border-top-color:#bbb;
+		  opacity:0.5
+		}
+		.site-footer hr.small
+		{
+		  margin:20px 0
+		}
+		.site-footer h6
+		{
+		  color:#fff;
+		  font-size:16px;
+		  text-transform:uppercase;
+		  margin-top:5px;
+		  letter-spacing:2px
+		}
+		.site-footer a
+		{
+		  color:#737373;
+		}
+		.site-footer a:hover
+		{
+		  color:#3366cc;
+		  text-decoration:none;
+		}
+		.footer-links
+		{
+		  padding-left:0;
+		  list-style:none
+		}
+		.footer-links li
+		{
+		  display:block
+		}
+		.footer-links a
+		{
+		  color:#737373
+		}
+		.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+		{
+		  color:#3366cc;
+		  text-decoration:none;
+		}
+		.footer-links.inline li
+		{
+		  display:inline-block
+		}
+		.site-footer .social-icons
+		{
+		  text-align:right
+		}
+		.site-footer .social-icons a
+		{
+		  width:40px;
+		  height:40px;
+		  line-height:40px;
+		  margin-left:6px;
+		  margin-right:0;
+		  border-radius:100%;
+		  background-color:#33353d
+		}
+		.copyright-text
+		{
+		  margin:0
+		}
+		@media (max-width:991px)
+		{
+		  .site-footer [class^=col-]
+		  {
+		    margin-bottom:30px
+		  }
+		}
+		@media (max-width:767px)
+		{
+		  .site-footer
+		  {
+		    padding-bottom:0
+		  }
+		  .site-footer .copyright-text,.site-footer .social-icons
+		  {
+		    text-align:center
+		  }
+		}
+		.social-icons
+		{
+		  padding-left:0;
+		  margin-bottom:0;
+		  list-style:none
+		}
+		.social-icons li
+		{
+		  display:inline-block;
+		  margin-bottom:4px
+		}
+		.social-icons li.title
+		{
+		  margin-right:15px;
+		  text-transform:uppercase;
+		  color:#96a2b2;
+		  font-weight:700;
+		  font-size:13px
+		}
+		.social-icons a{
+		  background-color:#eceeef;
+		  color:#818a91;
+		  font-size:16px;
+		  display:inline-block;
+		  line-height:44px;
+		  width:44px;
+		  height:44px;
+		  text-align:center;
+		  margin-right:8px;
+		  border-radius:100%;
+		  -webkit-transition:all .2s linear;
+		  -o-transition:all .2s linear;
+		  transition:all .2s linear
+		}
+		.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+		{
+		  color:#fff;
+		  background-color:#29aafe
+		}
+		.social-icons.size-sm a
+		{
+		  line-height:34px;
+		  height:34px;
+		  width:34px;
+		  font-size:14px
+		}
+		.social-icons a.facebook:hover
+		{
+		  background-color:#3b5998
+		}
+		.social-icons a.twitter:hover
+		{
+		  background-color:#00aced
+		}
+		.social-icons a.linkedin:hover
+		{
+		  background-color:#007bb6
+		}
+		.social-icons a.dribbble:hover
+		{
+		  background-color:#ea4c89
+		}
+		@media (max-width:767px)
+		{
+		  .social-icons li.title
+		  {
+		    display:block;
+		    margin-right:0;
+		    font-weight:600
+		  }
+		}
+		
+	</style>
+</head>
+<body class="pt-5">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href='/'>TeamKraken</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          </li>
+          <li class="nav-item active ml-2">
+          	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            <a class="nav-link text-light" href="{% url 'jugadores' %}">Jugadores</a>
+          </li>
+          <li class="nav-item">
+          	<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            <a class="nav-link text-light ml-2" href="/partidos">Calendario de partidos</a>
+          </li>
+          <li class="nav-item">
+          	<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            <a class="nav-link text-light ml-2" href="{% url 'entrenamientos' %}">Entrenamientos</a>
+          </li>
+          <li class="nav-item">
+          	<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+            <a class="nav-link text-light ml-2" href="{% url 'ejercicios' %}">Ejercicios</a>
+          </li>
+          
+		</ul>
+		{% if user.is_authenticated %}
+        <div class="nav-item dropdown justify-content-end mr-3">
+            <a class="nav-link dropdown-toggle text-light" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.get_username }}</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/logout">Cerrar sesión</a>
+            </div>
+          </div>
+        {% endif %}
+        <a class="my-2 my-lg-0" href='/admin'>Zona admin</a>
+      </div>
+
+    </nav>
+
+	<div class="container pt-3">
+    {%  if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+	{% block content %}
+	{% endblock %}
+	</div>
+
+
+
+  {% if is_paginated %}
+
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination justify-content-end et">
+	    {% if page_obj.has_previous %}
+	      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}&p={{ p }}&row={{ row }}&q={{ q }}">&laquo;</a></li>
+	    {% else %}
+	      <li class="page-item"><a class="page-link">Prev</a></li>
+	    {% endif %}
+	    {% if '/car' in request.path %}
+	        {% for i in paginator.page_range %}
+	          {% if page_obj.number == i %}
+	       <li class="page-item active"><a class="page-link active" href="?page={{ i  }}&p={{ p }}&row={{ row }}&q={{ q }}">{{ i }}</a></li>
+	      {% else %}
+	    <li class="page-item"><a class="page-link" href="?page={{ i  }}&p={{ p }}&row={{ row }}&q={{ q }}">{{ i }}</a></li>
+	      {% endif %}
+	    {% endfor %}
+	
+	    {% else%}
+	
+	    {% for i in paginator.page_range %}
+	          {% if page_obj.number == i %}
+	       <li class="page-item active"><a class="page-link active" href="?page={{ i  }}&q={{ q }}">{{ i }}</a></li>
+	      {% else %}
+	    <li class="page-item"><a class="page-link" href="?page={{ i  }}&q={{ q }}">{{ i }}</a></li>
+	      {% endif %}
+	    {% endfor %}
+	
+	    {% endif %}
+	     {% if page_obj.has_next %}
+	      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}&p={{ p }}&row={{ row }}&q={{ q }}">&raquo;</a></li>
+	    {% else %}
+	      <li class="page-item"><a class="page-link">Next</a></li> 
+	      {% endif %}
+	  </ul>
+	</nav>
+{% endif %}
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>About</h6>
+            <p class="text-justify"><i>TEAM KRAKEN</i> es una herramienta creada por un estudiante de la Universidad de Sevilla. Este sitio web es para uso unico y personal de la maricona de Antonio y su equipo de nenazas.</p>
+          	<p class="text-justify">Desarrollado con el framework de Python <i>Django</i> y desplegado en <i>Heroku</i>.</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Lenguajes</h6>
+            <ul class="footer-links">
+              <li>Python</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>Sqlite3</li>
+              <li>Javascript</li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/about/">About Us</a></li>
+              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+              <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+         	<a href="https://codepen.io/scanfcode">Scanfcode</a>.
+            </p>
+            <p><a class="github" href="https://github.com/manpercar1/teamkraken"><i class="ion-social-github"></i> Repositorio en GitHub</a></p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="#"><i class="ion-social-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="ion-social-twitter"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="ion-social-linkedin"></i></a></li>   
+            </ul>
+          </div>
+        </div>
+      </div>
+	</footer>
+
+</body>
+</html>
+

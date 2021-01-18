@@ -1,0 +1,59 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Informe del jugador {{ jugador.nombre }} {{ jugador.apellidos }} en el partido {{ partido.local }} - {{ partido.visitante }}</h3>
+		<br/>
+		<table class="table table-striped">
+	        <tr>
+	            <th>Fecha</th>
+	            <td>{{ partido.fecha }}</td>
+	        </tr>
+	        <tr>
+	            <th>Resultado</th>
+	            <td>{{ partido.resultado }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Titular</th>
+	        	<td>{{ partido.titular }}</td>
+	        </tr>
+	        <tr>
+	            <th>Minutos disputados</th>
+	            <td>{{ partido.minutosJugados }}</td>
+	        </tr>
+	        <tr>
+	            <th>Posición designada</th>
+	            <td>{{ partido.posicion }}</td>
+	        </tr>
+	        <tr>
+	        	<th>Tiros a puerta</th>
+	            <td>{{ partido.tirosPuerta }}</td>
+	        </tr>
+	        <tr>
+	            <th>Goles</th>
+	            <td>{{ partido.goles }}</td>
+	        </tr>
+	        <tr>
+	            <th>Asistencias</th>
+	            <td>{{ partido.asistencias }}</td>
+	        </tr>
+	        <tr>
+	            <th>Robos de balón</th>
+	            <td>{{ partido.robosBalon }}</td>
+	        </tr>
+	        <tr>
+	            <th>Balones perdidos</th>
+	            <td>{{ partido.balonesPerdidos }}</td>
+	        </tr>
+	        <tr>
+	            <th>Amarillas</th>
+	            <td>{{ partido.amarillas }}</td>
+	        </tr>
+	        <tr>
+	            <th>Rojas</th>
+	            <td>{{ partido.rojas }}</td>
+	        </tr>
+	    </table>
+	    
+{% endblock %}

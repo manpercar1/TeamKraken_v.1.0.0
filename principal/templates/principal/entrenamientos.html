@@ -1,0 +1,31 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+	
+	<br/>
+	<h3>Entrenamientos</h3>
+	<br/>
+	<div class="mb-5">
+		<table class="table table-hover" id="carsTable">
+  			<thead class="thead-dark">
+    			<tr>
+      				<th scope="col">Fecha</th>
+      				<th scope="col"></th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  				{% for entrenamiento in entrenamientos %}
+    			<tr>
+					<td>{{ entrenamiento.fecha }}</td>
+					<td>
+						<a href='/entrenamientos/entrenamiento/{{ entrenamiento.id }}'>Detalles</a>
+					</td>
+    			</tr>
+    			{% endfor %}
+     
+  			</tbody>
+
+  		</table>
+	</div>
+
+{% endblock %}

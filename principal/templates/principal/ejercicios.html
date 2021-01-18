@@ -1,0 +1,101 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+	
+	<br/>
+	<h3>Ejercicios</h3>
+	<br/>
+	<form id="formulario" method="post" action=''>{% csrf_token %}
+		{{formulario}}
+		<br/>
+		<input type='submit' value='Realizar Busqueda'/>
+		{% if request.POST %}
+			<a href='/ejercicios' class="btn btn-link">Borrar filtro</a>
+		{% endif %}
+    </form>
+    
+    <hr>
+
+	<div class="mb-5">
+	
+	{% if resultado %}
+	
+		<h4> Total de ejercicios relacionados:  {{ resultado|length }}</h4>
+		
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+		            <th scope="col">Tipo</th>
+      				<th scope="col">Objetivo técnico</th>
+      				<th scope="col">Objetivo táctico</th>
+      				<th></th>
+		        </tr>
+			</thead>
+			<tbody>
+				{% for row in resultado %}
+				    <tr>
+						<td>{{ row.tipo }}</td>
+						<td>
+							{% for objT in row.objetivoTecnico.all %}
+	            				{{ objT.nombre }},
+	            			{% endfor %}
+						</td>
+						<td>
+							{% for objT2 in row.objetivoTactico.all %}
+	            				{{ objT2.nombre }},
+	            			{% endfor %}
+						</td>
+						<td>
+							<a href='/ejercicios/ejercicio/{{ row.id }}'>Detalles</a>
+						</td>
+	    			</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	
+	{% else %}
+	
+		{% if resultado|length == 0 and request.POST %}
+	
+			<h4> No se han encontrado coincidencias, asi que te mostramos todos los ejercicios </h4>
+		
+		{% endif %}
+	
+		<table class="table table-hover" id="carsTable">
+  			<thead class="thead-dark">
+    			<tr>
+      				<th scope="col">Tipo</th>
+      				<th scope="col">Objetivo técnico</th>
+      				<th scope="col">Objetivo táctico</th>
+      				<th></th>
+    			</tr>
+  			</thead>
+  			<tbody>
+  			
+  				{% for ejercicio in ejercicios %}
+    			<tr>
+					<td>{{ ejercicio.tipo }}</td>
+					<td>
+						{% for objT in ejercicio.objetivoTecnico.all %}
+	            			{{ objT.nombre }},
+	            		{% endfor %}
+	            	</td>
+					<td>
+						{% for objTa in ejercicio.objetivoTactico.all %}
+	            			{{ objTa.nombre }},
+	            		{% endfor %}
+	            	</td>
+					<td>
+						<a href='/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
+					</td>
+    			</tr>
+    			{% endfor %}
+     
+  			</tbody>
+  		</table>
+  		
+  	{% endif %}
+  	
+	</div>
+
+{% endblock %}

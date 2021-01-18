@@ -1,0 +1,30 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<div class="mb-5">
+		<h3 style="text-align:center;">Bienvenido, <b>{{request.user.username}}</b></h3>
+		<br/>
+	    <div class="row">
+	        <div class="col-md-12">
+	            <img style="display:block; margin:left; float:left;" src="/media/kraken.png"/>
+	        </div>
+	    </div>
+	    <div class="row" style="float:right; margin-top:-230px; margin-right:335px;">
+	    	<form id="formulario" method="post" action='/seleccionarEquipo'>{% csrf_token %}
+				<label>Selecciona tu equipo</label>
+				<select name="equipos" id="equipos">
+					{% for equipo in equipos %}
+						<option value="{{equipo.id}}">{{equipo.nombre}}</option>
+					{% endfor %}
+				</select>
+				<button type="submit">Cambiar equipo</button>
+		    </form>
+		</div>
+		<div class="row" style="float:right; margin-top:-30px; margin-right:230px;">
+			<span>¿Tienes un nuevo equipo que añadir?&nbsp;</span>
+			<a href="/añadirEquipo">Añade un nuevo equipo</a>
+		</div>
+	</div>
+	
+{% endblock %}

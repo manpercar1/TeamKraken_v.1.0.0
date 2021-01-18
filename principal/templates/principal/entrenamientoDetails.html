@@ -1,0 +1,59 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Información del entrenamiento</h3>
+		<br/>
+		<table class="table table-striped">
+	        <tr>
+	            <th>Fecha</th>
+	            <td>{{ entrenamiento.fecha }}</td>
+	        </tr>
+	    </table>
+	    
+	    <br/>
+	    <br/>
+	    <h4>Lista de asistencia</h4>
+	    <br/>
+	    <table class="table table-striped">
+	    	{% for jugador in entrenamiento.jugadores.all %}
+		    	
+		    		<tr>
+	                	<th>Jugador</th>
+	                    <td>{{ jugador.nombre }} {{ jugador.apellidos }} </td>
+	                    <td><a href='/jugadores/jugador/{{ jugador.id }}'>Detalles</a></td>
+	                </tr>
+				
+	    	{% endfor %}
+	    </table>	
+	    <br/>
+	    <br/>
+	    <h4>Ejercicios</h4>
+	    <br/>
+	    
+	    	{% for ejercicio in entrenamiento.ejercicios.all %}
+		    	<table class="table table-striped">
+		    		<tr>
+	                	<th>Tipo</th>
+	                    <td>{{ ejercicio.tipo }}</td>
+	                </tr>
+	                <tr>
+	                	<th>Objetivo tecnico</th>
+	                    <td>{{ ejercicio.objetivoTecnico }}</td>
+	                </tr>
+	                <tr>
+	                	<th>Objetivo tactico</th>
+	                    <td>{{ ejercicio.objetivoTactico }}</td>
+	                </tr>
+	                <tr>
+	                    <th>
+	                        <a href='/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
+	                    </th>
+	                    <td></td>
+					</tr>
+				</table>
+	    	{% endfor %}
+	    
+	    
+{% endblock %}
