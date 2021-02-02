@@ -7,37 +7,121 @@
 		<br/>
 		<table class="table table-striped">
 	        <tr>
-	            <th>Tipo</th>
-	            <td>{{ ejercicio.tipo }}</td>
-	        </tr>
-	        <tr>
-	            <th>Material</th>
-	            <td>{{ ejercicio.material }}</td>
-	        </tr>
-	        <tr>
-	            <th>Objetivo técnico</th>
-	            <td>
-	            	{% for objT in ejercicio.objetivoTecnico.all %}
-	            		{{ objT.nombre }},
-	            	{% endfor %}
-	            </td>
-	        </tr>
-	        <tr>
-	            <th>Objetivo táctico</th>
-	            <td>
-	            	{% for objTa in ejercicio.objetivoTactico.all %}
-	            		{{ objTa.nombre }},
-	            	{% endfor %}
-	            </td>
-	        </tr>
-	        <tr>
-	            <th>Descripción</th>
+	            <th style="vertical-align:middle;">Nombre</th>
+	            <td>{{ ejercicio.nombre }}</td>
+			</tr>
+			<tr>
+	            <th style="vertical-align:middle;">Descripción</th>
 	            <td>{{ ejercicio.descripcion }}</td>
-	        </tr>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table class="table table-striped">
+			<tr>
+				<th>Material</th>
+			</tr>
 	        <tr>
-	            <th>Representación</th>
+	            <td><i class="ion-android-checkmark-circle"></i> {{ material_1 }}</td>
+			</tr>
+			<tr>
+	            <td><i class="ion-android-checkmark-circle"></i> {{ material_2 }}</td>
+			</tr>
+			<tr>
+	            <td><i class="ion-android-checkmark-circle"></i> {{ material_3 }}</td>
+			</tr>
+			<tr>
+	            <td><i class="ion-android-checkmark-circle"></i> {{ material_4 }}</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<table class="table table-striped">
+			<tr>
+				<th>Consejos</th>
+			</tr>
+			<tr>
+	            <td><i class="ion-information-circled"></i><b> Incidir:</b> {{ incidir }}</td>
+			</tr>
+			<tr>
+	            <td><i class="ion-close-circled"></i><b> Evitar:</b> {{ evitar }}</td>
 	        </tr>
-	    </table>
-	    <img src="{{MEDIA_URL}}{{ ejercicio.representacion }}"/>
+			<tr>
+	            <td><i class="ion-arrow-graph-up-right"></i><b> Progresión:</b> {{ progresion }}</td>
+	        </tr>
+		</table>
+		<br>
+		<br>
+		<h4>Objetivos</h4>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>Objetivos específicos</th>
+			</thead>
+			<tbody>
+				<tr>
+					{% for obj in ejercicio.objetivoEspecifico.all %}
+	            		<td style="width: 150px;">{{ obj.nombre }}</td>
+	            	{% endfor %}
+				</tr>
+			</tbody>
+			<br>
+		</table>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>Objetivos físicos</th>
+			</thead>
+			<tbody>
+				<tr>
+					{% for obj in ejercicio.objetivoFisico.all %}
+	            		<td style="width: 150px;">{{ obj.nombre }}</td>
+	            	{% endfor %}
+				</tr>
+			</tbody>
+			<br>
+		</table>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>Objetivos psicológicos</th>
+			</thead>
+			<tbody>
+				<tr>
+					{% for obj in ejercicio.objetivoPsicologico.all %}
+	            		<td style="width: 150px;">{{ obj.nombre }}</td>
+	            	{% endfor %}
+				</tr>
+			</tbody>
+			<br>
+		</table>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>Objetivos tácticos</th>
+			</thead>
+			<tbody>
+				<tr>
+					{% for obj in ejercicio.objetivoTactico.all %}
+	            		<td style="width: 150px;">{{ obj.nombre }}</td>
+	            	{% endfor %}
+				</tr>
+			</tbody>
+			<br>
+		</table>
+		<br>
+		<table class="table table-striped">
+			<thead>
+				<th>Objetivos técnicos</th>
+			</thead>
+			<tbody>
+				<tr>
+					{% for obj in ejercicio.objetivoTecnico.all %}
+	            		<td style="width: 150px;">{{ obj.nombre }}</td>
+	            	{% endfor %}
+				</tr>
+			</tbody>
+			<br>
+		</table>
 	    	
 {% endblock %}

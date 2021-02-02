@@ -1,18 +1,84 @@
 {% extends 'principal/base.html' %}
 
 {% block content %}
+
+	<script>
+		function enseñarFiltros(){
+			document.getElementById("filtros").style.display = "inline"
+			document.getElementById("botonOcultar").style.display = "inline"
+			document.getElementById("botonEnseñar").style.display = "none"
+		}
+		
+		function ocultarFiltros(){
+			document.getElementById("filtros").style.display = "none"
+			document.getElementById("botonOcultar").style.display = "none"
+			document.getElementById("botonEnseñar").style.display = "inline"
+		}
+		
+	</script>
 	
 	<br/>
-	<h3>Ejercicios</h3>
+	<h3>Ejercicios <a class="btn btn-success" href="/{{ eq.id }}/confirmacion">Obtener ejercicios en entrenamientosdefutbol.es</a></h3>
 	<br/>
-	<form id="formulario" method="post" action=''>{% csrf_token %}
-		{{formulario}}
-		<br/>
-		<input type='submit' value='Realizar Busqueda'/>
-		{% if request.POST %}
-			<a href='/ejercicios' class="btn btn-link">Borrar filtro</a>
-		{% endif %}
-    </form>
+	<a id="botonEnseñar" href="javascript:void(0)" onclick="enseñarFiltros()">Filtrar</a>
+	<a id="botonOcultar" href="javascript:void(0)" onclick="ocultarFiltros()" style="display: none;">Ocultar filtros</a>
+	{% if request.POST %}
+		<a href='/{{ eq.id }}/ejercicios' style="margin-left: 5%;">Borrar filtro</a>
+	{% endif %}
+	<div id="filtros" style="display: none;">
+		<br>
+		<br>
+		<form id="formulario" method="post" action=''>{% csrf_token %}
+			<table>
+				<tr>
+					<td>
+						<select name="objetivos_fisicos" id="objetivos_fisicos">
+							<option value=" ">--------Objetivo físico--------</option>
+							{% for obj in objetivos_fisicos %}
+								<option value="{{obj.nombre}}">{{obj.nombre}}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td>
+						<select name="objetivos_especificos" id="objetivos_especificos">
+							<option value=" ">-------Objetivo específico-------</option>
+							{% for obj in objetivos_especificos %}
+								<option value="{{obj.nombre}}">{{obj.nombre}}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td>
+						<select name="objetivos_psicologicos" id="objetivos_psicologicos">
+							<option value=" ">-------Objetivo psícológico-------</option>
+							{% for obj in objetivos_psicologicos %}
+								<option value="{{obj.nombre}}">{{obj.nombre}}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="objetivos_tecnicos" id="objetivos_tecnicos">
+							<option value=" ">-------Objetivo técnico-------</option>
+							{% for obj in objetivos_tecnicos %}
+								<option value="{{obj.nombre}}">{{obj.nombre}}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td>
+						<select name="objetivos_tacticos" id="objetivos_tacticos">
+							<option value=" ">---------Objetivo táctico---------</option>
+							{% for obj in objetivos_tacticos %}
+								<option value="{{obj.nombre}}">{{obj.nombre}}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<input type='submit' value='Realizar Busqueda'/>
+		</form>
+	</div>
     
     <hr>
 
@@ -25,28 +91,18 @@
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
-		            <th scope="col">Tipo</th>
-      				<th scope="col">Objetivo técnico</th>
-      				<th scope="col">Objetivo táctico</th>
+		            <th scope="col">Nombre</th>
+      				<th scope="col">Descripción</th>
       				<th></th>
 		        </tr>
 			</thead>
 			<tbody>
 				{% for row in resultado %}
 				    <tr>
-						<td>{{ row.tipo }}</td>
+						<td>{{ row.nombre }}</td>
+						<td style="text-align: justify;">{{ row.descripcion }}</td>
 						<td>
-							{% for objT in row.objetivoTecnico.all %}
-	            				{{ objT.nombre }},
-	            			{% endfor %}
-						</td>
-						<td>
-							{% for objT2 in row.objetivoTactico.all %}
-	            				{{ objT2.nombre }},
-	            			{% endfor %}
-						</td>
-						<td>
-							<a href='/ejercicios/ejercicio/{{ row.id }}'>Detalles</a>
+							<a href='/{{ eq.id }}/ejercicios/ejercicio/{{ row.id }}'>Detalles</a>
 						</td>
 	    			</tr>
 				{% endfor %}
@@ -64,9 +120,8 @@
 		<table class="table table-hover" id="carsTable">
   			<thead class="thead-dark">
     			<tr>
-      				<th scope="col">Tipo</th>
-      				<th scope="col">Objetivo técnico</th>
-      				<th scope="col">Objetivo táctico</th>
+      				<th scope="col">Nombre</th>
+      				<th scope="col">Descripción</th>
       				<th></th>
     			</tr>
   			</thead>
@@ -74,19 +129,10 @@
   			
   				{% for ejercicio in ejercicios %}
     			<tr>
-					<td>{{ ejercicio.tipo }}</td>
+					<td>{{ ejercicio.nombre }}</td>
+					<td style="text-align: justify;">{{ ejercicio.descripcion }}</td>
 					<td>
-						{% for objT in ejercicio.objetivoTecnico.all %}
-	            			{{ objT.nombre }},
-	            		{% endfor %}
-	            	</td>
-					<td>
-						{% for objTa in ejercicio.objetivoTactico.all %}
-	            			{{ objTa.nombre }},
-	            		{% endfor %}
-	            	</td>
-					<td>
-						<a href='/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
+						<a href='/{{ eq.id }}/ejercicios/ejercicio/{{ ejercicio.id }}'>Detalles</a>
 					</td>
     			</tr>
     			{% endfor %}

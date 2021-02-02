@@ -3,21 +3,22 @@
 {% block content %}
 
 	<div class="mb-5">
-		<h3 style="text-align:center;">Bienvenido, <b>{{request.user.username}}</b></h3>
+		<h3 style="text-align:center;">Página principal de {{ eq.nombre }}</h3>
 		<br/>
 	    <div class="row">
-	        <div class="col-md-12">
+	        <div class="col-md-3">
 	            <img style="display:block; margin:left; float:left;" src="/media/kraken.png"/>
 	        </div>
 	    </div>
-	    <div class="row" style="float:right; margin-top:-230px; margin-right:335px;">
-	    	<form id="formulario" method="post" action='/seleccionarEquipo'>{% csrf_token %}
-				<label>Selecciona tu equipo</label>
+	    <div class="row" style="float:right; margin-top:-230px; margin-right:175px;">
+	    	<form id="formulario" method="post" action='/seleccionarEquipo/'>{% csrf_token %}
+				<label>¿Quieres cambiar de equipo?</label>
 				<select name="equipos" id="equipos">
 					{% for equipo in equipos %}
 						<option value="{{equipo.id}}">{{equipo.nombre}}</option>
 					{% endfor %}
 				</select>
+				<br>
 				<button type="submit">Cambiar equipo</button>
 		    </form>
 		</div>

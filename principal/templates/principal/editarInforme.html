@@ -1,0 +1,22 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Editar informe</h3>
+    <br/>
+    <h5>Jugador: {{ jugador.nombre }} {{ jugador.apellidos }}, {{ jugador.posicionPrincipal }}</h5>
+    <br>
+    <h5>Partido: {{ partido.local }} {{ partido.resultado }} {{ partido.visitante }}</h5>
+    <br>
+	<form id="formulario" method="post" action=''>{% csrf_token %}
+        <table>
+            {{formulario}}
+        </table>
+        <br/>
+        <input type='submit' value='Guardar'/>
+        <br>
+        <br>
+    </form>
+
+{% endblock %}

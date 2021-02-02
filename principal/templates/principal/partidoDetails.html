@@ -2,58 +2,49 @@
 
 {% block content %}
 
-	<br/>
-	<h3>Informe del jugador {{ jugador.nombre }} {{ jugador.apellidos }} en el partido {{ partido.local }} - {{ partido.visitante }}</h3>
-		<br/>
-		<table class="table table-striped">
-	        <tr>
-	            <th>Fecha</th>
-	            <td>{{ partido.fecha }}</td>
-	        </tr>
-	        <tr>
-	            <th>Resultado</th>
-	            <td>{{ partido.resultado }}</td>
-	        </tr>
-	        <tr>
-	        	<th>Titular</th>
-	        	<td>{{ partido.titular }}</td>
-	        </tr>
-	        <tr>
-	            <th>Minutos disputados</th>
-	            <td>{{ partido.minutosJugados }}</td>
-	        </tr>
-	        <tr>
-	            <th>Posición designada</th>
-	            <td>{{ partido.posicion }}</td>
-	        </tr>
-	        <tr>
-	        	<th>Tiros a puerta</th>
-	            <td>{{ partido.tirosPuerta }}</td>
-	        </tr>
-	        <tr>
-	            <th>Goles</th>
-	            <td>{{ partido.goles }}</td>
-	        </tr>
-	        <tr>
-	            <th>Asistencias</th>
-	            <td>{{ partido.asistencias }}</td>
-	        </tr>
-	        <tr>
-	            <th>Robos de balón</th>
-	            <td>{{ partido.robosBalon }}</td>
-	        </tr>
-	        <tr>
-	            <th>Balones perdidos</th>
-	            <td>{{ partido.balonesPerdidos }}</td>
-	        </tr>
-	        <tr>
-	            <th>Amarillas</th>
-	            <td>{{ partido.amarillas }}</td>
-	        </tr>
-	        <tr>
-	            <th>Rojas</th>
-	            <td>{{ partido.rojas }}</td>
-	        </tr>
-	    </table>
-	    
+    <br/>
+    <h3>Informe del partido {{ partido.local }} - {{ partido.visitante }}</h3>
+        <br/>
+        <table class="table table-striped">
+            <tr>
+                <th>Fecha</th>
+                <td>{{ partido.fecha }}</td>
+            </tr>
+            <tr>
+                <th>Local</th>
+                <td>{{ partido.local }}</td>
+            </tr>
+            <tr>
+                <th>Visitante</th>
+                <td>{{ partido.visitante }}</td>
+            </tr>
+            <tr>
+                <th>Resultado</th>
+                <td>{{ partido.resultado }}</td>
+            </tr>
+        </table>
+
+        <br>
+        <br>
+        <hr>
+        <br>
+        <h4>Lista de convocados</h4>
+        <br>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {% for jugador in partido.convocados.all %}
+                    <tr>
+                        <td>{{ jugador.nombre }}</td>
+                        <td>{{ jugador.apellidos }}</td>
+                        <td><a href="/{{ eq.id }}/partidos/partido/{{ partido.id }}/{{ jugador.id }}">Informe del partido</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
 {% endblock %}

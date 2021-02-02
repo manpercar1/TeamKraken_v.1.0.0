@@ -1,0 +1,94 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+	<br/>
+	<h3>Calendario
+		{% if partidos|length > 0 %}
+			<a href="/{{ eq.id }}/crearPartido" class="btn btn-success">Añadir partido</a>
+		{% endif %}
+	</h3>
+	<br/>
+	<form id="formulario" method="post" action=''>{% csrf_token %}
+		<label>Filtrar por jugador: </label>
+			<select name="jugadores" id="jugadores">
+				{% for jugador in jugadores %}
+					<option value="{{jugador.id}}">{{jugador.nombre}} {{jugador.apellidos}}</option>
+				{% endfor %}
+			</select>
+		<input type='submit' value='Realizar Busqueda'/>
+		{% if request.POST %}
+			<a href='/{{ eq.id }}/partidos' class="btn btn-link">Borrar filtro</a>
+		{% endif %}
+    </form>
+    
+    <hr>
+	
+	{% if request.POST %}
+	
+		{% if partidos|length == 0 %}
+		
+			<h4 style="text-align: center;"> {{ p.nombre }} {{ p.apellidos }} no ha sido convocado en ningún partido aún. {{request.user.username}} enróllate </h4>
+
+		{% else %}
+
+			<h4> Total de partidos donde {{ p.nombre }} {{ p.apellidos }} ha sido convocado:  {{ partidos|length }}</h4>
+			
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Partido</th>
+						<th>Fecha</th>
+						<th>Resultado</th>
+					</tr>
+				</thead>
+				{% for row in partidos %}
+					<tbody>
+						<tr>
+							<td><a href='/{{ eq.id }}/partidos/partido/{{ row.id }}'>{{ row.local }} - {{ row.visitante }}</a></td>
+							<td>{{ row.fecha }}</td>
+							<td>{{ row.resultado }}</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+		
+		{% endif %}
+	
+	{% else %}
+	
+		{% if partidos|length == 0 %}
+
+			<h4 style="text-align: center;">Aún no hay partidos para este equipo</h4>
+			<br>
+			<div style="text-align: center;">
+				<a href="/{{ eq.id }}/crearPartido" class="btn btn-success">Añadir partido</a>
+			</div>
+			<br>
+	
+		{% else %}
+
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Partido</th>
+						<th>Fecha</th>
+						<th>Resultado</th>
+					</tr>
+				</thead>
+				{% for row in partidos %}
+					<tbody>
+						<tr>
+							<td><a href='/{{ eq.id }}/partidos/partido/{{ row.id }}'>{{ row.local }} - {{ row.visitante }}</a></td>
+							<td>{{ row.fecha }}</td>
+							<td>{{ row.resultado }}</td>
+						</tr>
+					</tbody>
+				{% endfor %}
+			</table>
+
+		{% endif %}
+
+	{% endif %}
+	
+{% endblock %}
