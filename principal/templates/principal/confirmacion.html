@@ -1,0 +1,29 @@
+{% extends 'principal/base.html' %}
+
+{% block content %}
+
+    <br/>
+	<h3 style="text-align: center;">ATENCIÓN</h3>
+    <br/>
+    <div style="text-align: center;">
+        <p style="text-align: center;">
+            Esta acción es lenta, ya que requiere acceder tanto a la página 
+            <a href="http://entrenamientosdefutbol.es/">entrenamientosdefutbol.es</a>
+            como a la de los ejercicios que se extraigan en específico.
+        </p>
+        <p style="text-align: center;">
+            Además, 
+            <b>
+                sólo se añadirán los nuevos ejercicios que se encuentren en dicha página. Si no hay ninguno 
+                nuevo, la lista de ejercicios seguirá siendo la misma. 
+            </b>
+            ¿Quieres continuar?
+        </p>
+        <br>
+        <a href="/{{ eq.id }}/obtenerEjercicios" class="btn btn-danger">Sí, quiero obtener nuevos ejercicios</a>
+        <a href="/{{ eq.id }}/ejercicios" class="btn btn-success">No, quiero volver</a>
+        <br>
+        <br>
+    </div>
+    
+{% endblock %}

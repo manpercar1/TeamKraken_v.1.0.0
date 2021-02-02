@@ -1,5 +1,5 @@
-from principal.models import Posicion,Ejercicio,Entrenamiento,Partido,Jugador,TestCooper,Falta,\
-    ObjetivoTactico, ObjetivoTecnico, DetallesPartido, Equipo
+from principal.models import Posicion,Ejercicio,Entrenamiento,Partido,Jugador,Falta, Cooper,\
+    ObjetivoTactico, ObjetivoTecnico, ObjetivoFisico, ObjetivoPsicologico, ObjetivoEspecifico, DetallesPartido, Equipo
 from django.contrib import admin
 
 # Register your models here.
@@ -10,7 +10,10 @@ admin.site.register(Equipo)
 admin.site.register(Entrenamiento)
 admin.site.register(Partido)
 admin.site.register(Jugador)
-admin.site.register(TestCooper)
+admin.site.register(Cooper)
 admin.site.register(Falta)
 admin.site.register(ObjetivoTactico)
 admin.site.register(ObjetivoTecnico)
+admin.site.register(ObjetivoFisico)
+admin.site.register(ObjetivoPsicologico)
+admin.site.register(ObjetivoEspecifico)

@@ -27,7 +27,23 @@
                     <br>
                     <table class="table table-striped">
                         <thead class="thead-dark">
+                            <tr>
+                                <th>Código el club</th>
+                                <th>Nombre del equipo</th>
+                                <th>Categoría</th>
+                                <th></th>
+                            </tr>
                         </thead>
+                        <tbody>
+                            {% for c in context %}
+                                <tr>
+                                    <td>{{ c.codigo }}</td>
+                                    <td>{{ c.nombre }}</td>
+                                    <td>{{ c.categoria }}</td>
+                                    <td><a href="detallesEquipo/{{ c.codEquipo }}" target="_blank">Detalles</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
                     </table>
                 {% else %}
                     <br>

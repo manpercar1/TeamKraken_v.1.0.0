@@ -3,7 +3,7 @@
 {% block content %}
 	
 	<br/>
-	<h3>Entrenamientos</h3>
+	<h3>Entrenamientos <a href="/{{ eq.id }}/crearEntrenamiento" class="btn btn-success">Añadir entrenamiento</a></h3>
 	<br/>
 	<div class="mb-5">
 		<table class="table table-hover" id="carsTable">
@@ -18,7 +18,7 @@
     			<tr>
 					<td>{{ entrenamiento.fecha }}</td>
 					<td>
-						<a href='/entrenamientos/entrenamiento/{{ entrenamiento.id }}'>Detalles</a>
+						<a href='/{{ eq.id }}/entrenamientos/entrenamiento/{{ entrenamiento.id }}'>Detalles</a>
 					</td>
     			</tr>
     			{% endfor %}

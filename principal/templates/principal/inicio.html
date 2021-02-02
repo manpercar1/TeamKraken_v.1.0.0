@@ -6,19 +6,24 @@
 		<h3 style="text-align:center;">Bienvenido a TeamKraken, <b>{{request.user.username}}</b>, elige el equipo que quieres gestionar</h3>
 		<br/>
 	    <div class="row">
-	        <div class="col-md-6">
+	        <div class="col-md-3">
 	            <img style="display:block; margin:left; float:left;" src="/media/kraken.png"/>
 	        </div>
 	    </div>
-	    <div class="row" style="float:right; margin-top:-230px; margin-right:335px;">
-	    	<form id="formulario" method="post" action='/seleccionarEquipo'>{% csrf_token %}
+	    <div class="row" style="float:right; margin-top:-230px; margin-right:235px;">
+	    	<form id="formulario" method="post" action='/seleccionarEquipo/'>{% csrf_token %}
 				<label>Selecciona tu equipo</label>
 				<select name="equipos" id="equipos">
 					{% for equipo in equipos %}
 						<option value="{{equipo.id}}">{{equipo.nombre}}</option>
 					{% endfor %}
 				</select>
-				<button type="submit">Seleccionar equipo</button>
+				<br>
+				{% if equipos|length == 0%}
+					<button type="submit" disabled>Seleccionar equipo</button>
+				{% else %}
+					<button type="submit">Seleccionar equipo</button>
+				{% endif %}
 		    </form>
 		</div>
 		<div class="row" style="float:right; margin-top:-30px; margin-right:230px;">
